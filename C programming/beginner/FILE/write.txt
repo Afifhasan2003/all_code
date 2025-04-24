@@ -1,0 +1,2 @@
+inputing is this easy 
+ number is : 40
