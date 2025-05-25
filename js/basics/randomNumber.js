@@ -1,5 +1,6 @@
 //THIS CODE IS DIRECTLY COPIED FROM GPT
 
+//The names are given by me to understand the functions better
 
 // 1. Generate a random decimal between 0 and 1
 const getRandomDecimal = () => Math.random();

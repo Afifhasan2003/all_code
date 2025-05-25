@@ -1,0 +1,71 @@
+body{
+    background-color: #28587b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    background-color: #9ec768;
+    margin-top: 10vh;
+    height: 50%;
+    width: 40vh;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+form {
+  margin: 2rem 0 1rem 0;
+}
+
+.amount p{
+    margin: 0;
+}
+
+form input,select ,button{
+   width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 0.75rem;
+
+}
+.amount input{
+    border: 1px solid rgb(49, 99, 192);
+    height: 3rem;
+   
+}
+
+
+.dropDown{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0rem;
+}
+.dropDown p{
+    margin: 0;
+}
+.selectCountry{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    border-radius: 0.5rem;
+    border: 1px solid lightgray;
+    
+}
+.selectCountry select{
+    width: auto;
+  font-size: 1rem;
+
+}
+.selectCountry img{
+    /* width: 2rem; */
+    max-width: 2rem;
+}
+
+form button{
+    height: 3rem;
+    background-color: #af4d98;
+    color: #fff;
+    font-size: 1.15rem;
+    cursor: pointer;
+}

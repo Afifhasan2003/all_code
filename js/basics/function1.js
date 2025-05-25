@@ -1,22 +1,34 @@
 const number = 5
+
+//basic function
 function addnumber(num1 = 1, num2 = 2){
     return num1 + num2;
 }
-
 console.log(addnumber(5,4)); //9
 console.log(addnumber()); //3  by default value
 
 
-const addnumbers = (num1=1, num2=2) => {//arrow function
-    return num1 + num2;
+//arrow function
+    (num1 = 1, num2 = 2) => {           //this is an arrow function 
+        return num1 + num2;
+    }   
+
+let addnumbers = (num1=1, num2=2) => {                //here addnumbers is a variable containing the function
+    return num1 + num2; 
 }
-
-
 console.log(addnumbers(5,4)); //9
+console.log(addnumbers()); //3  by default value
+console.log(addnumbers(5)); //7  by default value of num2
+console.log(addnumbers(5,4,3,2)); //9  by default value of num2
+    addnumber = 10;                                      //we can treat addnumber as a variable
 
 
-const addnumberss = (num1=1, num2=2) => num1 + num2;    //arrow function with one line
+
+//arrow function with one line
+const addnumberss = (num1=1, num2=2) => num1 + num2;    
 console.log(addnumberss(5,4)); //9
+
+
 
 
 //single peremeter
@@ -24,6 +36,7 @@ console.log(addnumberss(5,4)); //9
 function isPositive(number) {
     return number >=0
 }
+//this is same as above function
 const isPositive2 = number => number >=0  //arrow function in one line with one peremeter
 
 console.log(isPositive(number))

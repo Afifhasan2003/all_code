@@ -20,3 +20,6 @@ const what= `My name is ${name} and I am ${age}`;
 console.log(what);
 
 console.log("name length is " + name.length);
+
+// z = prompt("enter a number: ")       //this works in browser
+console.log("you entered: ",z)

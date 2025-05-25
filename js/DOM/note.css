@@ -1,0 +1,88 @@
+#allBox{
+    /* margin-top: 80; */
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    
+
+}
+.box{
+
+    
+    height: 400px;
+    width: 30%;
+    /* background-color: rgb(135, 194, 138);  there is no point of this as this was edited in js */
+    margin: 5px;
+    padding: 5px;
+    
+} 
+
+#box2jr{
+    height: 100px;
+    background: #ce7878;
+}
+
+.yellowText{
+    color: yellow;
+}
+.makeRound{
+    border-radius: 5px;
+}
+
+
+.lightMode{
+    background-color: white;
+    color: black;
+}
+
+.darkMode{
+    background-color: #000;
+    color: white;
+}
+
+
+.navLightMode{
+    background: #000;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.navDarkMode{
+    background: #f5f4f4;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    color: rgb(3, 3, 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#box6{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#box6jr:hover{
+    opacity: .8;
+    cursor:  pointer;
+    
+}
+#box6jr{
+    background: #3bd45c;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
