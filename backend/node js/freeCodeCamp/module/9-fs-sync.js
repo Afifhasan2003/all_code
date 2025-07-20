@@ -11,4 +11,5 @@ const second = readFileSync('./content/second.txt','utf8')
 console.log(first,second)   
 
 // writeFileSync('./content/result-sync.txt',`here is the result: ${first},${second}`) //if file does not exist, it will create a new file , else it will overwrite the existing file
+
 writeFileSync('./content/result-sync.txt',`here is the result: ${first},${second}`,{flag: 'a'})  // flag: 'a' is used to append the content to the file if it already exists

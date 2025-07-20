@@ -9,7 +9,7 @@ const sayHi = require('./4-moduleFunc'); // import the function
 
 
 // sayHi('susan'); 
-// sayHi(names.john); 
+sayHi(names.john); 
 
 // const data = require('./5-alternative'); 
 // console.log(data) 

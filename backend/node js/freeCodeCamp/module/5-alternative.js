@@ -1,4 +1,4 @@
-module.exports.items = ['items', 'items2', 'items3'];   
+module.exports.items = ['items', 'items2', 'items3'];    //exporting an array
 const person = {
     name: 'bob',
 
@@ -6,5 +6,5 @@ const person = {
 }
 
 // module.exports.person = person; // export the object person
-module.exports.singlePerson = person; // export the object person 
+module.exports.singlePerson = person; // same as above, but different syntax
 

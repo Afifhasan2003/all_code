@@ -1,13 +1,13 @@
-const os = require('os');
+const os = require('os');       //could say const abc = require('os'); to rename
 
 //info about current user
 const user = os.userInfo()
-// console.log(user)
+console.log(user)
 
 
 
 
-// console.log(`the system uptime is ${os.uptime()} seconds `)
+console.log(`the system uptime is ${os.uptime()} seconds `)
 
 
 const currentOs ={
@@ -16,6 +16,6 @@ const currentOs ={
     totalMem: os.totalmem(),
     freeMem: os.freemem(),
 }
-// console.log(currentOs)
+console.log(currentOs)
 
 
