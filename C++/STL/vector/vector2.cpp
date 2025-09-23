@@ -1,10 +1,13 @@
 //some trick for vectors
 #include<iostream>
 #include<vector>
+#include<algorithm> //for reverse function
 using namespace std;
 
 
 void reverseVector(vector<int> &vec){
+        //reverse a vector
+        //method 1
     for (int i = 0; i < vec.size()/2; i++)
      {
         int temp=vec[i];
@@ -16,29 +19,37 @@ void reverseVector(vector<int> &vec){
         cout<<a<<" ";
     }
 }
+void reverseVector2(vector<int> &vec){
+  //using stl
+    reverse(vec.begin(),vec.end());
+    for(int a:vec) {
+        cout<<a<<" ";
+    }
+}
 
 void forLoop(vector<int> &alpha){   //4 types of for loops
   
-         //1. normal
-    for(int i=0; i<alpha.size(); i++){
-        cout<<alpha[i]<<"\t";
-    } cout<<endl;
+    //1. normal
+        for(int i=0; i<alpha.size(); i++){
+            cout<<alpha[i]<<"\t";
+        } cout<<endl;
 
-         //2. for loop is used to iterate over the vector
-    for(char a:alpha){
-        cout<<a<<"\t";
-    } cout<<endl;
-          //3. using pointer
-    for(vector<int>::iterator it=alpha.begin(); it!=alpha.end();  it++){  
-        cout<<*it<<"\t";
-    } cout<<endl;
+    //2. for loop is used to iterate over the vector
+        for(char a:alpha){
+            cout<<a<<"\t";
+        } cout<<endl;
+
+     //3. using pointer
+        for(vector<int>::iterator it=alpha.begin(); it!=alpha.end();  it++){  
+            cout<<*it<<"\t";
+        } cout<<endl;
           //it is a pointer to the first element of the vector 
           //alpha.end() is a pointer to the mermory after the last element of the vector
 
-          //4. using auto keyword
-    for(auto it=alpha.begin(); it!=alpha.end();  it++){
-        cout<<*it<<"\t";
-    } cout<<endl;
+    //4. using auto keyword
+        for(auto it=alpha.begin(); it!=alpha.end();  it++){
+            cout<<*it<<"\t";
+        } cout<<endl;
           //auto is a keyword that automatically deduces the type 
 }
 
@@ -50,11 +61,21 @@ void findUniqueElement(vector<int> &vec){
         ans=ans^vec[i];         //if we do XOR of all the numbers, ans will be the number that present one time
                                 // n^n=0 ,, n^m= non zero
     }
-    
     cout<<ans<<endl;
 }
 
+void rotate(vector<int>& nums, int k) {
+    int n = nums.size();
+    k %= n; // handle k > n
+    reverse(nums.begin(), nums.end());
+    reverse(nums.begin(), nums.begin() + k);
+    reverse(nums.begin() + k, nums.end());
+}
 
+int numberOfSpecificElement(vector<int> &nums,int target){
+    int cnt = count(nums.begin(), nums.end(), target);
+    return cnt;
+}
 
 int main() {
 

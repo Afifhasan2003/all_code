@@ -1,70 +1,47 @@
 #include<iostream>
 using namespace std;
+
 int main() {
+    int n = 5, m = 6;
+    int arr[5][6] = {
+        {1,  2,  3,  4,  5,  6},
+        {18, 19, 20, 21, 22, 7},
+        {17, 28, 29, 30, 23, 8},
+        {16, 27, 26, 25, 24, 9},
+        {15, 14, 13, 12, 11, 10}
+    };
 
+    int rowStart = 0, rowEnd = n - 1, columnStart = 0, columnEnd = m - 1;
 
-    //  #ifndef ONLINE_JUDGE
-    // freopen("input.txt","r",stdin);
-    // freopen("output.txt","w",stdout);
-    //  #endif
-
-    //OR
-
-    // int arr[5][6]={{01,02,03,04,05,06},{18,19,20,21,22,07} and so on } 
-
-
-     int n,m;
-     cin>>n>>m;
-
-     int arr[n][m];  //n=row number  m=column number
-
-     for (int i = 0; i < n; i++)
-     {
-        for (int j = 0; j < m; j++)
-        {
-            cin>>arr[i][j];
+    while (rowStart <= rowEnd && columnStart <= columnEnd) {
+        // Traverse rowStart
+        for (int col = columnStart; col <= columnEnd; col++) {
+            cout << arr[rowStart][col] << " ";
         }
-        
-     }
+        rowStart++;
 
-    int rowStart=0, rowEnd=n-1, columnStart=0, columnEnd=m-1;
+        // Traverse columnEnd
+        for (int row = rowStart; row <= rowEnd; row++) {
+            cout << arr[row][columnEnd] << " ";
+        }
+        columnEnd--;
 
-    while (rowStart<=rowEnd && columnStart<=columnEnd)
-    {
-        //for rowstart
-        for (int col = columnStart ; col <= columnEnd; col++)
-        {
-            cout<<arr[rowStart][col]<<" ";
-           
-        } rowStart++;
+        // Traverse rowEnd (check needed to avoid double print in odd rows)
+        if (rowStart <= rowEnd) {
+            for (int col = columnEnd; col >= columnStart; col--) {
+                cout << arr[rowEnd][col] << " ";
+            }
+            rowEnd--;
+        }
 
-        //for columnEnd
-        for (int row = rowStart ; row <= rowEnd  ; row++)
-        {
-            cout<<arr[row][columnEnd]<<" ";
-            
-        }columnEnd--;
-        
-        //for rowEnd
-        for (int col =columnEnd; col >= columnStart; col--)   //not <=
-        {
-            cout<<arr[rowEnd][col]<<" ";
-           
-        } rowEnd--;
-
-        //for columnStrt
-        for(int row=rowEnd; row>=rowStart;row--){
-            cout<<arr[row][columnStart]<<" ";
-            
-        }columnStart++;
-        return 0;
-        
+        // Traverse columnStart (check needed to avoid double print in odd cols)
+        if (columnStart <= columnEnd) {
+            for (int row = rowEnd; row >= rowStart; row--) {
+                cout << arr[row][columnStart] << " ";
+            }
+            columnStart++;
+        }
     }
-    
 
-
-    
-
-
-return 0;
+    return 0;
 }

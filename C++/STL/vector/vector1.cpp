@@ -20,10 +20,10 @@ void eraseElementFromVector() {
 void insertElementInVector() {
     //Insert element
     vector<char> alpha2={'a','b','c','d','e','f','g','h'};
-    alpha2.insert(alpha2.begin()+1,'x'); //{'a','x','b','c','d','e','f','g','h'}
+    alpha2.insert(alpha2.begin()+1,'x'); //{'a','x','b','c','d','e','f','g','h'}  (starting position,element)
     
 
-    alpha2.insert(alpha2.begin()+1,3,'y'); //{'a','y','y','y','b','c','d','e','f','g','h'}
+    alpha2.insert(alpha2.begin()+1,3,'y'); //{'a','y','y','y','b','c','d','e','f','g','h'} (starting position,no of times,element)
     for(char x:alpha2){
         cout<<x<<" ";
     }cout<<endl;
@@ -31,14 +31,26 @@ void insertElementInVector() {
 }
 
 void insertVectorInVector() {
+
     //Insert vector in vector
     vector<int> vec1={1,2,3,4,5};
     vector<int> vec2={6,7,8,9,10};
-    vec1.insert(vec1.begin()+2,vec2.begin()+1,vec2.end()); //{1 2 7 8 9 10 3 4 5 }
+    vec1.insert(vec1.begin()+2,vec2.begin()+1,vec2.end()); //{1 2 7 8 9 10 3 4 5 } (starting position,starting position of vec2,end position of vec2)
     for(int x:vec1){
         cout<<x<<" ";
     }cout<<endl;
 }
+
+bool isEmptyVector(vector<int> &v){
+    if(v.empty()) return true;
+    return false;
+}
+
+
+
+
+
+
 int main() {
 
     vector<int> vec1;
@@ -50,8 +62,7 @@ int main() {
 
     veccpy.clear(); //clears the vector, size will be 0 
 
-    bool isEmpty = vec1.empty(); //0 means not empty, 1 means empty
-    
+   
 
     vector<char> alpha={'a','b','c','d'};
     cout<<"size of alpha "<<alpha.size()<<endl;
