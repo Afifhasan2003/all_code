@@ -3,6 +3,15 @@
 #include <list>
 using namespace std;
 
+void properties(){
+    // list is a doubly linked list
+    //can push and pop from both ends in O(1) time
+    //insertion and deletion in middle is O(1) if we have the iterator to that position
+    //no random access, no operator[]
+}
+
+
+
 int main() {
     list<int> l;
 
@@ -29,14 +38,16 @@ int main() {
 
     // Insert at specific position
     auto it = l.begin();
-    it++;
+    int pos = 2;
+    advance(it, pos);
     l.insert(it, 25); // {20,25,10}  insert 25 before 10
     l.insert(it, 2, 15); // {20,15,15,25,10} insert 2 times 15 before 25
     l.insert(l.end(), 5, 50); // {20,15,15,25,10,50,50,50,50,50} insert 5 times 50 at the end
     l.insert(l.begin(), {1, 2, 3}); // {1,2,3,20,15,15,25,10,50,50,50,50,50} insert 1,2,3 at the beginning
 
     // Erase at specific position
-    it = l.begin();             
+    pos = 4;
+    advance(it, pos);
     l.erase(it); // erase first element {2,3,20,15,15,25,10,50,50,50,50}
 
     cout << "After insert and erase:\n";

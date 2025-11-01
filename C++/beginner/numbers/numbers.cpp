@@ -109,10 +109,57 @@ void incrementExample(){
     cout<<"b="<<b;
 }
 
+int GCDbyrecursion(int a,int b){
+    if (b==0)
+    {
+        return a;
+    }
+    return GCDbyrecursion(b,a%b);
+}
+int GCDBySubstract(int a, int b){
+    
+    while (a!=b)
+    {                                          // a=12,b=8
+     if (a>b)                                     
+     {                                          //a=12-8=4
+        a=a-b;                                 // b=8-4
+     }else b=b-a;
+        
+    }
+    return a;
+}
+int GCDByModulo(int a, int b){
+    while (b!=0)
+    {
+        int temp=a%b;
+        a=b;
+        b=temp;
+    }
+    return a;
+}
+
+
+bool howManyisDevidedByBoth(int n,int x,int y){
+    // int a=1, b=40, x=5, y=7;
+
+     int c1=n/x;
+     int c2=n/y;
+     int c3=n/(x*y); //numbers that are divisible both by 5,7.. like 35
+
+     int ans=c1+c2-c3;
+     cout<<ans;
+
+}
+
 
 
 int main() {
- 
-   
+
+   int a,b;
+   cin>>a>>b;
+   cout<<"GCD by Recursion: "<<GCDbyrecursion(a,b)<<endl;
+   cout<<"GCD by Substraction: "<<GCDBySubstract(a,b)<<endl;
+   cout<<"GCD by Modulo: "<<GCDByModulo(a,b)<<endl;
+
     return 0;
 }

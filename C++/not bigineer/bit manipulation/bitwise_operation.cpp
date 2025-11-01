@@ -1,4 +1,6 @@
 #include<iostream>
+#include<bitset> // for bitset in toBinary function
+
 using namespace std;
 
 void leftshift() {
@@ -20,6 +22,17 @@ void rightshift() {
     int d=17>>2;               //d=4=0100
     cout<<d<<endl;  // 4
 }
+void setBit(){
+    int n=10;          //n=10 =0 1 0 1 0
+
+    int m= n | 1<<2 ;
+    cout << m <<endl;   //n=14= 0 1 1 1 0  added 1 on 2nd position(actually 3rd position)
+
+
+    int a= n | 1<<3;     //this wont change,, coz there is already a 1 on 3rd position, so no point of adding 1 with 1
+    cout<<a<<endl;  
+}
+
 
 bool getBit_ON_position(int n,int pos ){
     // is there 1 or 0 at the given position in binary representation of n
@@ -70,14 +83,59 @@ int findUnique(int arr[],int n){
     return xorsum;
 }
 
+void print_ALL_subsets_ofArray(int arr[],int n){
+    for (int i = 0; i < (1<<n); i++) //for each subset, here 1<<n = 2^n
+    {
+
+        for (int j = 0; j < n; j++)
+        {
+            if (i & (1<<j))                  //i & (1<<j)   tells us whether to include arr[j] in the subset.
+            {                                       
+                cout<<arr[j]<<", ";
+            }
+            
+        }cout<<endl;
+        
+    }
+    
+    //basically, i will have all possible combinations of 0 and 1 for n bits 
+    //for each combination, j will check which position is 1 and print that element from array
+}
+void printAllSubstringOF_String(string s){
+    //similar logic
+    int n=s.length();
+    for (int i = 0; i < (1<<n); i++) 
+    {
+
+        for (int j = 0; j < n; j++)
+        {
+            if (i & (1<<j))                  
+            {                                       
+                cout<<s[j];
+            }
+            
+        }cout<<endl;
+        
+    }
+}
+
+int toBinary(int n){
+
+    cout<<bitset<20>(n)<<endl;    // if n=13, it will print 00000000000000001101
+
+    string str=bitset<30>(n).to_string();
+     
+     cout<<str<<endl;           // if n=13, it will print 00000000000000000000000000001101
+
+     int a=stoi(str);
+     cout<<"binary of n is : "<<a<<endl;    // if n=13, it will print 1101
+     return a;
+}
+
 
 int main() {
-    
 
-    cout<<"there is "<<getBit_ON_position(5,2)<<" at position 2 in 5"<<endl;
-
-    cout<< updateBit(11,2,1)<<endl;             //11= 0 1 0 1 1
-                                                //15=0 1 1 1 1
+    cout<<toBinary(5)<<endl;
 
 return 0;
 }

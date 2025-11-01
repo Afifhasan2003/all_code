@@ -3,26 +3,30 @@
 #include <unordered_set>
 using namespace std;
 
+void display(const unordered_set<int>& us) {
+    cout << "Unordered Set elements:\n";
+    for (auto x : us)
+        cout << x << " ";
+    cout << endl;
+
+    // Note: we cannot predict the order of elements in unordered_set
+}
+
 int main() {
     unordered_set<int> us; // Create unordered_set
 
-    // Insert elements
+
     us.insert(10);    // {10}
     us.insert(20);    // {10,20}
     us.insert(30);    // {10,20,30}
     us.insert(40);    // {10,20,30,40}
 
-    // Emplace element
+    // Emplace is better
     us.emplace(50);   // {10,20,30,40,50}
 
-    // Try inserting duplicate (won't be added)
     us.insert(20);    // {10,20,30,40,50} no duplicate allowed
 
-    // Display elements
-    cout << "Unordered Set elements:\n";
-    for (auto x : us)
-        cout << x << " ";
-    cout << endl;
+    display(us); 
 
     // Size
     cout << "Size of unordered_set: " << us.size() << endl;
