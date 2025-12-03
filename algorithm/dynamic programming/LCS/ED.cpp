@@ -12,7 +12,7 @@ int ed(string &x, string &y, int n,int m, int i, int j, vector<vector<int>> &dp,
      if(i==0) {
         return  dp[0][j] = j;
      }
-     if(j==0){
+     if(j==0){k
         return dp[i][0]=i;
     
      }
