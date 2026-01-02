@@ -1,1 +1,11 @@
+*.pdf
+*.zip
+*.rar
+*.tar.gz
+node_modules/
+build/
+dist/
+*.apk
 *.exe
+.env
+big.txt
