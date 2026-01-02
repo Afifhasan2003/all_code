@@ -1,11 +1,28 @@
+# PDFs and archives
 *.pdf
 *.zip
 *.rar
 *.tar.gz
+
+# Dependencies
 node_modules/
+vendor/
+
+# Build outputs
 build/
 dist/
 *.apk
 *.exe
+
+# Environment files
 .env
+.env.local
+
+# Large test files
 big.txt
+*.dump
+*.sql
+
+# IDE
+.vscode/
+.idea/
