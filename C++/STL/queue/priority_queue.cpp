@@ -46,14 +46,23 @@ void minPriority_AtTop() {
 
 void pairsInPriorityQueue() {
     priority_queue<pair<int, int>> pq;  //max-heap based on first element of pair
+
+
     pq.push({1, 2});  
     pq.push({2, 3});  
     pq.push({0, 4});  
     pq.push({2, 1});   // {(2,3), (2,1), (1,2), (0,4)}
-
-
-    
 }
+
+
+void pairsInPriorityQueue_MinHeap() {
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> mpq;  //min-heap based on first element of pair
+    mpq.push({1, 2});  
+    mpq.push({2, 3});  
+    mpq.push({0, 4});  
+    mpq.push({2, 1});   // {(0,4), (1,2), (2,3), (2,1)}
+}   
+
 
 int main() {
    

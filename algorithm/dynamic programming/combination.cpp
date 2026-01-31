@@ -11,9 +11,8 @@ int combination1(int n,int r, vector<vector<int>> &dp){
      return dp[n][r];
 }
 
+//bottom up approach
 int combination2(int n,int r,vector<vector<int>> &dp){
-
-    
     for (int i = 1; i <=n; i++)
     {
 

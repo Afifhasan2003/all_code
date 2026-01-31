@@ -1,4 +1,4 @@
-//edit distance for converting y into x;
+//edit distance for converting string x to string y
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -12,7 +12,7 @@ int ed(string &x, string &y, int n,int m, int i, int j, vector<vector<int>> &dp,
      if(i==0) {
         return  dp[0][j] = j;
      }
-     if(j==0){k
+     if(j==0){
         return dp[i][0]=i;
     
      }

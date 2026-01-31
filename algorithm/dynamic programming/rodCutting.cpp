@@ -2,8 +2,8 @@
 using namespace std;
 
 //top down approach
-int rodCutting1(vector<int> &prices, vector<int> &dp,int n){
-    if(dp[n]>-1) {return dp[n];}
+int rodCutting1(vector<int> &prices, vector<int> &dp,int n){    //n is current length of rod for which we are calculating max profit
+    if(dp[n]>-1) return dp[n];
     if(n==0) return 0;
 
     int mx=0;
@@ -39,8 +39,9 @@ int rodCutting2(vector<int> &prices, vector<int> &dp, int n){
     
 }
 
-int rodCutting3(vector<int> &prices, vector<int> &dp, int n, vector<int> &cut1){
-    if(dp[n]>-1) {return dp[n];}
+//top down with cut position
+int rodCutting3(vector<int> &prices, vector<int> &dp, int n, vector<int> &cut1){      // n is current length of rod for which we are calculating max profit
+    if(dp[n]>-1) return dp[n];
     if(n==0) return 0;
 
     int mx=0;
