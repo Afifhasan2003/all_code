@@ -1,0 +1,2 @@
+hello world this is a test paragraph for huffman encoding algorithm
+my name is afif hasan

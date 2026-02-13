@@ -1,3 +1,0 @@
-hello world this is a test paragraph for huffman encoding algorithm
-the quick brown fox jumps over the lazy dog
-compression works by assigning shorter codes to frequent characters
