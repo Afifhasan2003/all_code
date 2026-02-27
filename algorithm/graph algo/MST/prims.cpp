@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+// Prim's Algorithm to find the weight of the Minimum Spanning Tree (MST)
 int weightOfMST(int v, vector<vector<int>> &G)
 {
 
@@ -41,6 +43,8 @@ int weightOfMST(int v, vector<vector<int>> &G)
     return sum;
 }
 
+
+// Prim's Algorithm to find the edges in the Minimum Spanning Tree (MST)`
 vector<pair<int, int>> MST_Prim(int v, vector<vector<int>> &G)
 {
     // (weight, node, parent)
