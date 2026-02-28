@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <algorithm>
 
 using namespace std;
 
@@ -77,12 +78,39 @@ vector<pair<int, double>> fractionalKnapsackPQ(vector<int>& weight, vector<int>&
     return selected;
 }
 
+double fractionalKnapsackUsingpair(vector<int>& val, vector<int>& wt, int capacity) {
+    int n = val.size();
+    if (n == 0 || capacity == 0) return 0.0;
+
+    vector<pair<double,int>> unitVal;
+    for (int i = 0; i < n; i++)
+        unitVal.push_back({(double)val[i] / wt[i], wt[i]});
+
+    sort(unitVal.begin(), unitVal.end(), greater<pair<double,int>>());
+
+    double ans = 0.0;
+    int i = 0;
+
+    while (i < n && unitVal[i].second <= capacity) {
+        ans += unitVal[i].first * unitVal[i].second;
+        capacity -= unitVal[i].second;
+        i++;
+    }
+
+    if (i < n && capacity > 0)
+        ans += unitVal[i].first * capacity;
+
+    return ans;
+}
+
+
 int main() {
     vector<int> weight = {10, 20, 30, 40, 50};
     vector<int> price  = {60, 100, 120, 140, 150};
     int capacity       = 50;
 
-   
+    double ans = fractionalKnapsackUsingpair(price, weight, capacity);
+    cout << "Total Value (using pair): " << ans << endl;
 
     // Using map
     map<int, double> selected = fractionalKnapsackMap(weight, price, capacity);
