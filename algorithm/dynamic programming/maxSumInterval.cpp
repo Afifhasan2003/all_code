@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-int maxSumInterval(const vector<int>& a)
+int maxSumInterval(vector<int>& a)
 {
     int currentSum = a[0];
     int maxSum = a[0];
@@ -19,7 +19,7 @@ int maxSumInterval(const vector<int>& a)
     return maxSum;
 }
 
-int maxSumIntervalWithSubstring(const vector<int>& a)
+int maxSumInterval_withDisplay(vector<int>& a)
 {
     int currentSum = a[0];
     int maxSum = a[0];
@@ -63,7 +63,7 @@ int main()
 
     cout << "Max Sum Interval = " << maxSumInterval(nums) << endl;
 
-    int ans = maxSumIntervalWithSubstring(nums);
+    int ans = maxSumInterval_withDisplay(nums);
     cout << "Max Sum Interval with Substring = " << ans << endl;
 
     return 0;

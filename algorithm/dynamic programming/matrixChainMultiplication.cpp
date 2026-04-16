@@ -8,6 +8,7 @@ using namespace std;
 int bottomUpApproach(vector<int> &dims, vector<vector<int>> &Split) {
     int n = dims.size() - 1; // Number of matrices
     vector<vector<int>> dp(n, vector<int>(n, 0));
+    
     Split.resize(n, vector<int>(n, 0));
 
     // l is current chain length
@@ -76,7 +77,7 @@ int topDownApproach(const vector<int> &dims, vector<vector<int>> &Split) {
 
 
 int main() {
-    // Example: matrices with dimensions 10x30, 30x5, 5x60 etc.
+    // Example: matrices with dimensions 10x30, 30x5, 5x60 60x10, 10x20, 20x30, 30x40, 40x30
     vector<int> dims = {10, 30, 5, 60, 10 , 20, 30, 40, 30}; 
     vector<vector<int>> splits;
 

@@ -95,12 +95,15 @@ void LISusingLCS2(string &x, int n) {
 
 int main() {
     
-    string str1 = "XMJYAUZXYABZCUAGT";
+    string str1 = "XMJYAAUZXYABZCUAGT";
     int arr []= {10,22,9,33,21,50,41,60,80};
     int n= sizeof(arr)/sizeof(arr[0]);
 
+    cout<<"Duplicate allowed: "<<endl;
     LISusingLCS(str1, str1.length());
     cout<<endl;
+
+    cout<<"Duplicate not allowed: "<<endl;
     LISusingLCS2(str1, str1.length());
     cout<<endl;
     

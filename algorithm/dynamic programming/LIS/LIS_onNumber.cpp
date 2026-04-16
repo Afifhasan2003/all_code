@@ -89,6 +89,7 @@ void LISusingLCS2(vector<int> &x, int n) {
 }
 
 
+//doesnt give the actual sequence, only length of LIS, but in nlogn time complexity
 int modifiedLIS(vector<int> arr){  // nlogn approach
     vector<int> temp;
     temp.push_back(arr[0]);

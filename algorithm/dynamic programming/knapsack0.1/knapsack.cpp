@@ -41,6 +41,40 @@ int knapsack_BottomUp(int i, int W, vector<int>& wt, vector<int>& val, int n){
     return dp2[n][W];    
 }
 
+int knapsack_BottomUp_withDisplay(int i, int W, vector<int>& wt, vector<int>& val, int n){
+
+    vector<vector<int>> dp2(n + 1, vector<int>(W + 1, 0));
+
+    for (int i = 1; i <= n; i++) {
+        for (int w = 0; w <= W; w++) {
+            if (wt[i - 1] <= w) {   // can take
+                dp2[i][w] = max(
+                    dp2[i - 1][w], // not take
+                    val[i - 1] + dp2[i - 1][w - wt[i - 1]] // take
+                );
+            } else {
+                dp2[i][w] = dp2[i - 1][w];   // cannot take
+            }
+        }
+    }
+
+    //taken items list (indexes)
+    vector<int> takenItems;
+    int w = W;
+    for (int i = n; i > 0 && w > 0; i--) {
+        if (dp2[i][w] != dp2[i - 1][w]) { // item i-1 is taken
+            takenItems.push_back(i - 1);
+            w -= wt[i - 1]; // reduce remaining weight
+        }
+    }
+    cout << "Taken items (indexes): ";
+    for (int i = takenItems.size() - 1; i >= 0; i--) {
+        cout << takenItems[i] << " ";
+    }
+    cout << endl;
+
+    return dp2[n][W];    
+}
 
 int main() {
     int n = 3;
@@ -52,5 +86,9 @@ int main() {
 
     cout << "Max value = " << knapsack_TopDown(0, W, wt, val, n) << endl;
     cout << "Max value = " << knapsack_BottomUp(0, W, wt, val, n) << endl;
+
+
+        cout << "Max value = " << knapsack_BottomUp_withDisplay(0, W, wt, val, n) << endl;
+
     return 0;
 }

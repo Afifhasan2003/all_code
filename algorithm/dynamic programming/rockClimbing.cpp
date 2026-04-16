@@ -95,6 +95,7 @@ int rockClimbing(vector<vector<int>> &rock){
     }
 
     int ans=INT_MAX, ind=-1;
+     
     for (int i = 1; i <=width; i++)
     {
         // cout<<dp[height][i]<<"  ";
