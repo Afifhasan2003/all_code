@@ -10,25 +10,26 @@ void getClimbingPath(vector<vector<int>> &rock, vector<vector<int>> &dp, int min
 
     cout << rock[height-1][minInd-1] << " ";
 
-    for (int i = height; i > 1; i--) 
-    {
-        int ans = INT_MAX;
-        int best = minInd;
 
-        for (int j = minInd - 1; j <= minInd + 1; j++){
-            
-            if(j < 1 || j > width) 
-                continue; 
+    
 
-            if(ans > dp[i-1][j]){
-                ans = dp[i-1][j];
-                best = j;
-            }
+    for (int i = height; i >= 2; i--)
+{
+    int ans = INT_MAX;
+    int best = minInd;
+
+    for (int j = minInd - 1; j <= minInd + 1; j++){
+        if(j < 1 || j > width) continue;
+
+        if(dp[i-1][j] < ans){
+            ans = dp[i-1][j];
+            best = j;
         }
-
-        minInd = best;
-        cout << rock[i-2][minInd-1] << " ";
     }
+
+    minInd = best;
+    cout << rock[i-2][minInd-1] << " ";
+}
     cout<<endl;
 }
 

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int minDistance(vector<vector<int>> &g, vector<string> &color, vector<int> &dis, vector<int> &prev, int st, int last)
+int minDistance(vector<vector<int>> &g, vector<string> &color, vector<int> &dis, vector<int> &prev, int st, int dest)
 {
 
     int n = g.size();
@@ -29,13 +29,13 @@ int minDistance(vector<vector<int>> &g, vector<string> &color, vector<int> &dis,
 
         color[node] = "black";
     }
-    if (dis[last] == INT_MAX)
+    if (dis[dest] == INT_MAX)
     {
-        cout << "There is no path from " << st << " to " << last << endl;
+        cout << "There is no path from " << st << " to " << dest << endl;
         return -1;
     }
-    cout << "Distance from " << st << " to " << last << " is " << dis[last] << endl;
-    return dis[last];
+    cout << "Distance from " << st << " to " << dest << " is " << dis[dest] << endl;
+    return dis[dest];
 }
 
 void printPath(vector<vector<int>> &g, int st, int target, vector<int> &prev)
@@ -56,6 +56,7 @@ void printPath(vector<vector<int>> &g, int st, int target, vector<int> &prev)
     }
 }
 
+// Detect cycle in an undirected graph using BFS
 bool hasCycle(vector<vector<int>> &g, int start)
 {
     int n = g.size();

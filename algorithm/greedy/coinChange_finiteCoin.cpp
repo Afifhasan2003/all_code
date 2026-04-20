@@ -1,11 +1,12 @@
-//here each  coin has finite supply
+// Coin Change with Finite Coins
+//question: what is the minimum number of coins required to make up a given amount?
 
 #include <bits/stdc++.h>
 using namespace std;
 
 int coinChange(vector<int>& coins, vector<int>& count, int amount) {
 
-    const int INF = 1e9;
+    int INF = 1e9;
     vector<int> dp(amount + 1, INF);
     dp[0] = 0;
 

@@ -69,7 +69,6 @@ int topDownApproach(const vector<int> &dims, vector<vector<int>> &Split) {
     Split.resize(n, vector<int>(n, 0));
     return topDownApproachUtil(0, n - 1, dims, dp, Split);
 }
-
 //parenthesization function is the same as above
 
 

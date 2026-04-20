@@ -73,7 +73,8 @@ void LISusingLCS(string &x,  int n){    //actually this is LNDS (longest non-dec
 void LISusingLCS2(string &x, int n) {
     string y = x;
     sort(y.begin(), y.end());
-    y.erase(unique(y.begin(), y.end()), y.end()); 
+    y.erase(unique(y.begin(), y.end()), y.end());   // Remove duplicates from y
+
 
     int m = y.length(); // Get the new actual length of y
 

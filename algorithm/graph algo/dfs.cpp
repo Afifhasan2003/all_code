@@ -44,6 +44,41 @@ void dfs(vector<vector<int>> &g){
 
 }
 
+void dfsUsingStack(vector<vector<int>> &g) {
+    int n = g.size();
+    vector<string> color(n, "white");
+
+    for (int i = 0; i < n; i++) {
+        if (color[i] == "white") {
+            stack<int> st;
+            st.push(i);
+
+            while (!st.empty()) {
+                int cur = st.top();
+
+                if (color[cur] == "white") {
+                    color[cur] = "gray";
+                    cout << cur << " ";
+                }
+
+                bool found = false;
+                for (int j = 0; j < n; j++) {
+                    if (g[cur][j] == 1 && color[j] == "white") {
+                        st.push(j);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    color[cur] = "black";
+                    st.pop();
+                }
+            }
+        }
+    }
+}
+
 int main() {
     
       vector<vector<int>> g = {
@@ -60,6 +95,8 @@ int main() {
 
 
     dfs(g);
+    cout << endl;
+    dfsUsingStack(g);
 
     return 0;
 }

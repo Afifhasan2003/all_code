@@ -13,8 +13,7 @@ map<int, pair<int, int>> activitySelection(vector<int>& start, vector<int>& fini
         activities[finish[i]] = {start[i], i};
     }
 
-    // Always select the first activity (smallest finish time)
-    map<int, pair<int, int>> selected;
+    map<int, pair<int, int>> selected;  // 
     auto it = activities.begin();
     selected[it->first] = it->second;
     int lastFinish = it->first;     
@@ -33,7 +32,51 @@ map<int, pair<int, int>> activitySelection(vector<int>& start, vector<int>& fini
     }
 
     return selected;
+    //if two activities have the same finish time, then thats a problem
+}   
+
+
+//very similar to using map, but solves the duplicate finish time problem 
+int activitySelectionMultimap(vector<int> &start, vector<int> &finish) {
+        
+    int n = start.size();    
+    multimap<int, pair<int,int>> activities;
+    
+    for (int i = 0; i < n; i++)
+    {
+        activities.insert({finish[i], {start[i], i}});
+    }
+
+    for(auto it:activities){
+        cout<<it.second.first<<" - "<<it.first<<endl;
+    }
+    
+    map<int , pair<int,int>> selected;
+    auto itt = activities.begin();
+
+    selected[itt->first] = {itt->second.first,itt->second.second};
+
+    int lastSelected = selected.begin()->first;
+
+    int count = 1;
+    for (auto it:activities )
+    {
+        if(it.second.first > lastSelected){
+            count++;
+            lastSelected = it.first;
+            selected[it.first] = {it.second.first, it.second.second};
+            
+        }
+    }
+
+    for(auto it:selected){
+        cout<<it.second.first << " - "<< it.first<<endl;
+    }
+    
+        
+    return count;
 }
+
 
 int main() {
     vector<int> start  = {1, 3, 0, 5, 8, 6};

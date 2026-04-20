@@ -127,7 +127,7 @@ int main() {
     cout<< "LNDS sequences are: "; //longest non-decreasing sequence
     LISusingLCS(arr, n);
     cout<<endl;
-    cout<< "LIS sequences are: ";
+    cout<< "LIS sequences are: ";   //strictly increasing sequence
     LISusingLCS2(arr, n);
     cout<<endl;
     

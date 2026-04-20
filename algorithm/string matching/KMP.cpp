@@ -38,7 +38,7 @@ void KMPMatcher(string S, string p) {
 
     for (int i = 0; i < n; i++) {   // scan S left to right
 
-        while (q > 0 && p[q] != S[i]) {
+        while (q > 0 && p[q] != S[i]) { // mismatch after q matches, look for next best partial match
             q = pi[q - 1];
         }
 

@@ -28,7 +28,7 @@ int knapsack_BottomUp(int i, int W, vector<int>& wt, vector<int>& val, int n){
 
     for (int i = 1; i <= n; i++) {
         for (int w = 0; w <= W; w++) {
-            if (wt[i - 1] <= w) {   // can take
+            if (wt[i - 1] <= w) {   // i -1 because dp2 is 1-indexed for items, but wt and val are 0-indexed
                 dp2[i][w] = max(
                     dp2[i - 1][w], // not take
                     val[i - 1] + dp2[i - 1][w - wt[i - 1]] // take

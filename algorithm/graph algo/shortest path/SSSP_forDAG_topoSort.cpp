@@ -13,7 +13,8 @@ void topoSort_usingDFS(int node, vector<vector<pair<int,int>>> &adj, vector<int>
         }
     }
 
-    //the idea is, when going deep is done, push the vertex, this way, the vertices that come first will be at the top of stack, and the vertices that come after the source, or at the bottom layers, they will enter the stack first. so the top iteam of the stack is likely to be the actual parent of the tree that was created by the dfs 
+    //the idea is, when going deep is done, push the vertex, this way, the vertices that come first will be at the top of stack, 
+        //and the vertices that come after the source, or at the bottom layers, they will enter the stack first. so the top iteam of the stack is likely to be the actual parent of the tree that was created by the dfs 
     st.push(node);
 }
 

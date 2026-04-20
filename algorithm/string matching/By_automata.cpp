@@ -2,15 +2,15 @@
 using namespace std;
 
 /*
-    Compute-Transition-Function(P, Σ)
+    Compute-Transition-Function(P, Σ)       , for DFA, not NFA
 */
-vector<vector<int>> computeTransitionFunction(string P, vector<char> sigma) {
+vector<vector<int>> computeTransitionFunction(string P, vector<char> sigma) {   // P = pattern, sigma = alphabet
     int m = P.length();
     
     // delta table (states 0,1,2,..m)
     int alphabetSize = sigma.size();    // possible ways to travel from one state to another
 
-    vector<vector<int>> delta(m + 1, vector<int>(alphabetSize, 0));
+    vector<vector<int>> delta(m + 1, vector<int>(alphabetSize, 0)); //delta[q][a] = next state when in state q and input a is read
 
     for (int q = 0; q <= m; q++) {      //for each state
         for (char a : sigma) {          //all possible input characters

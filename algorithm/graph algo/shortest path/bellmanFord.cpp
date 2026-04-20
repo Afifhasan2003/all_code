@@ -1,3 +1,6 @@
+//relax all edges V-1 times
+ //
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -5,7 +8,7 @@ const int INF = 1e8;
 
 
 /* =========================================================
-   1️⃣ BELLMAN FORD USING EDGE LIST
+     BELLMAN FORD USING EDGE LIST
    ========================================================= */
 vector<int> bellmanFord_forEdgeList(int V, vector<vector<int>> &edges, int s){  
     // edges have list of {starting, ending, weight}

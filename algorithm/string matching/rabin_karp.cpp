@@ -29,7 +29,7 @@ vector<int> rabinKarpSimple(string text, string pattern) {
 
     // Initial hashes
     for(int i = 0; i < m; i++) {
-        patternHash = patternHash * base + pattern[i];
+        patternHash = patternHash * base + pattern[i];  //pattern[i] is the ascii value of the character
         windowHash  = windowHash  * base + text[i];
     }
 
@@ -76,7 +76,7 @@ vector<int> rabinKarp_withMOD(string text, string pattern)
 
 
 
-    const int mod = 1e9 + 7; // large prime to avoid overflow
+    const int mod = 1e9 + 7; // large prime to avoid overflow: overflow happens typically after 10^18 for unsigned long long
 
     int n = text.length();
     int m = pattern.length();

@@ -1,3 +1,7 @@
+//for each vertex
+    // create a matrix where distance either goes through that vertex or not, and take the minimum of those two
+    //create matrix from the previous created matrix
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -6,10 +10,8 @@ const int INF = 1e9;
 // ===========================================================
 // FLOYD WARSHALL WITH PATH RECONSTRUCTION
 // ===========================================================
-void floydWarshal(vector<vector<int>> &dist,
-                  vector<vector<int>> &next,
-                  vector<vector<int>> &last)
-{
+void floydWarshal(vector<vector<int>> &dist, vector<vector<int>> &next, vector<vector<int>> &last)
+{                                            //next, last are for path reconstruction
     int n = dist.size();
 
     for (int via = 0; via < n; via++)   // use all vertices as via

@@ -35,7 +35,7 @@ struct Compare {
 };//a struct can have member functions
 
 // Step 1: Read paragraph from file
-string readFromFile(const string& filename) {
+string readFromFile(const string& filename) { 
     ifstream file(filename);
     if (!file.is_open()) {
         cout << "Error: Could not open " << filename << endl;
@@ -84,7 +84,7 @@ Node* buildHuffmanTree(map<char, int>& freq) {
 
     // Build the tree
     while (pq.size() > 1) {
-        Node* left = pq.top(); pq.pop();
+        Node* left = pq.top(); pq.pop();    //character with least frequency
         Node* right = pq.top(); pq.pop();
 
         // Create parent node with combined frequency
@@ -101,7 +101,8 @@ Node* buildHuffmanTree(map<char, int>& freq) {
 
 // Step 4: Generate Huffman codes by traversing the tree
 void generateCodes(Node* root, string code, map<char, string>& huffmanCodes) {
-    if (!root) return;
+
+    if (!root) return;  // Base case: if node is null, return
 
     // Leaf node contains a character
     if (!root->left && !root->right) {
@@ -113,7 +114,7 @@ void generateCodes(Node* root, string code, map<char, string>& huffmanCodes) {
 }
 
 // Step 5: Encode the text using Huffman codes
-string encodeText(const string& text, map<char, string>& huffmanCodes) {
+string encodeText( string& text, map<char, string>& huffmanCodes) {
     string encoded = "";
     for (char ch : text) {
         encoded += huffmanCodes[ch];
@@ -124,7 +125,7 @@ string encodeText(const string& text, map<char, string>& huffmanCodes) {
 }
 
 // Step 6: Write encoded text to output file
-void writeToFile(const string& filename, const string& encodedText, map<char, string>& huffmanCodes) {
+void writeToFile( const string& filename,  string& encodedText, map<char, string>& huffmanCodes) {
     ofstream file(filename);
     if (!file.is_open()) {
         cout << "Error: Could not open " << filename << endl;
@@ -169,7 +170,7 @@ int main() {
 
     Node* root = buildHuffmanTree(freq);
 
-    map<char, string> huffmanCodes;
+    map<char, string> huffmanCodes; //[char -> huffman code]
     generateCodes(root, "", huffmanCodes);
 
     cout << "\nHuffman Codes Generated:" << endl;

@@ -68,7 +68,7 @@ int lcs2(string &x, string &y, int n, int m, vector<vector<int>> &dp,vector<vect
 
         for (int j = 1; j <=m ; j++)
         {
-            if(x[i-1]==y[j-1]){
+            if(x[i-1]==y[j-1]){     //i-1 because i is length, index is one less
              dp[i][j] = dp[i-1][j-1] + 1;
              b[i][j]='c';
             }
@@ -149,7 +149,7 @@ int main() {
     cout<<"size is: "<<ans2<<endl;
     cout<<"seq is: ";
     displaysub2(str1,str2,dp2,b2,n,m,seq2);
-    reverse(seq.begin(),seq.end());
+    reverse(seq2.begin(),seq2.end());
 
     for(char a:seq2)
             cout<<a<<" ";

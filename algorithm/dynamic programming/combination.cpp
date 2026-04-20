@@ -26,7 +26,6 @@ int combination2(int n,int r,vector<vector<int>> &dp){
         }
         
     }
-    
     return dp[n][r];
 }
 

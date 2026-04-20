@@ -1,3 +1,7 @@
+//For each vertex (serial based on current deistance from source)
+    //relax all vertices reachable from that vertex(push adj vertices in priority queue)
+    //via the current node
+
 #include <bits/stdc++.h>
 using namespace std;
 

@@ -3,6 +3,15 @@
 #include <map> // For multimap
 using namespace std;
 
+void properties(){
+    //stored in sorted order based on key
+    //allows duplicate keys
+    //implemented as self balancing BST (Red Black Tree)
+    //slower than unordered_multimap (implemented as hash table)
+    //time complexity: O(log n) for insert, delete, find
+}
+
+
 int main() {
     multimap<int, string> mm; // Create a multimap
 
