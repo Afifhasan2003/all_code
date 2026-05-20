@@ -41,7 +41,7 @@ bool bfs(int rGraph[V][V], int s, int t, int parent[]) {
 // DFS: finds ANY path from s to t in residual graph.
 // Ford-Fulkerson uses this (not BFS).
 // ─────────────────────────────────────────
-bool dfs(int rGraph[V][V], int u, int t, bool visited[], int parent[]) {
+bool dfs(int rGraph[V][V], int u, int t, bool visited[], int parent[]) { 
     visited[u] = true;
     if (u == t) return true;
 
@@ -71,7 +71,7 @@ int fordFulkerson(int graph[V][V], int s, int t) {
 
     while (true) {
         bool visited[V] = {false};
-        memset(parent, -1, sizeof(parent));
+        memset(parent, -1, sizeof(parent));     //memset is a C function to set all bytes of parent[] to -1 (indicating no parent)
 
         // Try to find an augmenting path via DFS
         if (!dfs(rGraph, s, t, visited, parent))
