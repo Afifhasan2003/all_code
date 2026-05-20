@@ -261,10 +261,7 @@ Node *splitInternal(Node *node, int key, Node *rightChild)
     return newInternal;
 }
 
-
-
-
-// ins
+// recursively inserts key into subtree rooted at node, sets childToInsert and keyToInsert if a split occurs at this level
 Node *insertInternal(Node *node, int key, Node **childToInsert, int *keyToInsert)
 {
     if (node->isLeaf)
@@ -353,6 +350,8 @@ Node *insertInternal(Node *node, int key, Node **childToInsert, int *keyToInsert
     }
 }
 
+// this is the main insert function
+// inserts new key into the B+ tree, handles root creation and root split, returns (possibly new) root
 Node *insert(Node *root, int key)
 {
     if (root == NULL)
@@ -382,8 +381,11 @@ Node *insert(Node *root, int key)
     return root;
 }
 
+
+
 // ========== DELETION HELPER FUNCTIONS ==========
 
+// returns index of first key in node >= given key (position where key would be inserted or is located)
 int findKeyIndex(Node *node, int key)
 {
     int i = 0;
@@ -392,6 +394,7 @@ int findKeyIndex(Node *node, int key)
     return i;
 }
 
+// removes key from leaf node by shifting remaining keys left, does nothing if key not found
 void removeFromLeaf(Node *leaf, int key)
 {
     int i = 0;
@@ -409,6 +412,7 @@ void removeFromLeaf(Node *leaf, int key)
     leaf->keyCount--;
 }
 
+// removes key at given index from internal node and shifts remaining keys and child pointers left
 void removeFromInternal(Node *node, int index)
 {
     for (int i = index; i < node->keyCount - 1; i++)
@@ -419,6 +423,7 @@ void removeFromInternal(Node *node, int index)
     node->keyCount--;
 }
 
+// borrows a key from left sibling to fix underflow in child at index, updates parent separator key accordingly
 void borrowFromLeft(Node *node, int index, Node *parent)
 {
     Node *child = parent->child[index];
@@ -466,6 +471,7 @@ void borrowFromLeft(Node *node, int index, Node *parent)
     }
 }
 
+// borrows a key from right sibling to fix underflow in child at index, updates parent separator key accordingly
 void borrowFromRight(Node *node, int index, Node *parent)
 {
     Node *child = parent->child[index];
@@ -513,6 +519,7 @@ void borrowFromRight(Node *node, int index, Node *parent)
     }
 }
 
+// merges child at index into its left sibling, pulls down parent separator key (internal only), updates leaf chain (leaf only)
 void mergeWithLeft(Node *node, int index, Node *parent)
 {
     Node *child = parent->child[index];
@@ -557,6 +564,7 @@ void mergeWithLeft(Node *node, int index, Node *parent)
     }
 }
 
+// merges right sibling into child at index, pulls down parent separator key (internal only), updates leaf chain (leaf only)
 void mergeWithRight(Node *node, int index, Node *parent)
 {
     Node *child = parent->child[index];
@@ -603,6 +611,7 @@ void mergeWithRight(Node *node, int index, Node *parent)
 
 // ========== DELETION MAIN FUNCTION ==========
 
+// recursively deletes key from subtree rooted at node, fixes underflow by borrowing or merging as needed
 void deleteInternal(Node *node, int key, Node *parent, int indexInParent)
 {
     if (node->isLeaf)
@@ -680,6 +689,7 @@ void deleteInternal(Node *node, int key, Node *parent, int indexInParent)
     }
 }
 
+// deletes key from the B+ tree, shrinks tree height if root becomes empty, returns (possibly new) root
 Node *deleteKey(Node *root, int key)
 {
     if (root == NULL)
@@ -700,6 +710,7 @@ Node *deleteKey(Node *root, int key)
 
 // ========== UTILITY FUNCTIONS ==========
 
+// prints all keys in [start, end] by finding the start leaf and traversing the leaf chain rightward
 void rangeQuery(Node *root, int start, int end)
 {
     Node *leaf = findLeaf(root, start);
@@ -736,6 +747,7 @@ void rangeQuery(Node *root, int start, int end)
     cout << endl;
 }
 
+// recursively frees all nodes in the tree using post-order traversal
 void destroyTree(Node *root)
 {
     if (root == NULL)
