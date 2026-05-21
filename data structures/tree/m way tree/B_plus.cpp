@@ -264,6 +264,8 @@ Node *splitInternal(Node *node, int key, Node *rightChild)
 // recursively inserts key into subtree rooted at node, sets childToInsert and keyToInsert if a split occurs at this level
 Node *insertInternal(Node *node, int key, Node **childToInsert, int *keyToInsert)
 {
+
+    //first thing to do is find the correct leaf to insert the key, then we will check if the leaf is full or not
     if (node->isLeaf)
     {
         if (node->keyCount < node->maxKeys)
@@ -271,20 +273,21 @@ Node *insertInternal(Node *node, int key, Node **childToInsert, int *keyToInsert
             // leaf not full
             insertInLeaf(node, key);
             *childToInsert = NULL;
-            return node;
+            return node;    //return leaf node where key was inserted
         }
         else
         {
             // leaf full, need to split
             Node *newLeaf = splitLeaf(node, key);
-            *keyToInsert = newLeaf->keys[0]; // copy up first key of new leaf
-            *childToInsert = newLeaf;
+            *keyToInsert = newLeaf->keys[0]; // pointer to first key of new leaf which will be pushed up to parent as separator key
+            *childToInsert = newLeaf;       // pointer to new leaf created after split, will be inserted as child in parent
+                                            // childToInsert was accepted as pointer, so dont have to return it, just set it and it will be available to caller, 
             return node;
         }
     }
     else
     {
-        // internal node - find child to recurse into
+        //  node is not lead, find child to go to
         int i = 0;
         while (i < node->keyCount && key >= node->keys[i])
         {
@@ -292,31 +295,31 @@ Node *insertInternal(Node *node, int key, Node **childToInsert, int *keyToInsert
         }
 
         Node *splitChild = NULL;
-        int splitKey = 0;
+        int splitKey = 0;   //this is the key of smallest key in the subtree of splitChild, which will be pushed up to this internal node if split occurs in child
 
         insertInternal(node->child[i], key, &splitChild, &splitKey);
 
         if (splitChild == NULL)
         {
-            // no split occurred below
+            // no split occurred in the direct child, so nothing to insert in this node
             *childToInsert = NULL;
             return node;
         }
 
-        // split occurred, need to insert splitKey and splitChild
-        if (node->keyCount < node->maxKeys)
+        // split occurred, need to insert 
+
+        if (node->keyCount < node->maxKeys) // this node is not full, can insert splitKey and splitChild here
         {
             // internal node not full
-            insertInInternal(node, splitKey, splitChild);
-            *childToInsert = NULL;
+            insertInInternal(node, splitKey, splitChild);       //splitKey is not position of split, it is the first key of the new child created after split,             *childToInsert = NULL;
             return node;
         }
         else
         {
             // internal node full, need to split
-            Node *newInternal = splitInternal(node, splitKey, splitChild);
+            Node *newInternal = splitInternal(node, splitKey, splitChild);  // accepted new right child and key to insert
 
-            // middle key to push up
+            
             vector<int> tempKeys(ORDER, 0);
             vector<Node *> tempChild(ORDER + 1, NULL);
 
@@ -350,7 +353,7 @@ Node *insertInternal(Node *node, int key, Node **childToInsert, int *keyToInsert
     }
 }
 
-// this is the main insert function
+// this is the main insertion function called by user
 // inserts new key into the B+ tree, handles root creation and root split, returns (possibly new) root
 Node *insert(Node *root, int key)
 {
@@ -362,7 +365,7 @@ Node *insert(Node *root, int key)
         return root;
     }
 
-    Node *splitChild = NULL;
+    Node *splitChild = NULL;    // if root splits, this will point to new node created after split
     int splitKey = 0;
 
     insertInternal(root, key, &splitChild, &splitKey);
