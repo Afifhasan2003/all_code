@@ -389,7 +389,7 @@ Node *insert(Node *root, int key)
 // ========== DELETION HELPER FUNCTIONS ==========
 
 // returns index of first key in node >= given key (position where key would be inserted or is located)
-int findKeyIndex(Node *node, int key)
+int findKeyIndexInNode(Node *node, int key)
 {
     int i = 0;
     while (i < node->keyCount && node->keys[i] < key)
@@ -427,14 +427,14 @@ void removeFromInternal(Node *node, int index)
 }
 
 // borrows a key from left sibling to fix underflow in child at index, updates parent separator key accordingly
-void borrowFromLeft(Node *node, int index, Node *parent)
+void borrowFromLeft(Node *node, int index, Node *parent)    //index is the index of child (at parent node )which is underflowed, so left sibling is at index-1
 {
     Node *child = parent->child[index];
     Node *leftSibling = parent->child[index - 1];
 
     if (child->isLeaf)
     {
-        // shift all keys in child to right
+        // shift all keys in child to right one position
         for (int i = child->keyCount; i > 0; i--)
         {
             child->keys[i] = child->keys[i - 1];
@@ -445,7 +445,7 @@ void borrowFromLeft(Node *node, int index, Node *parent)
         child->keyCount++;
         leftSibling->keyCount--;
 
-        // update parent key
+        // update parent key (parent key is always the first key of right child)
         parent->keys[index - 1] = child->keys[0];
     }
     else
@@ -460,7 +460,7 @@ void borrowFromLeft(Node *node, int index, Node *parent)
             child->child[i] = child->child[i - 1];
         }
 
-        // move parent key down
+        // move parent key down (cannot direct bring siblings's last, because sibling's last > zparents last )
         child->keys[0] = parent->keys[index - 1];
 
         // move sibling's last child
@@ -625,7 +625,7 @@ void deleteInternal(Node *node, int key, Node *parent, int indexInParent)
 
         if (node->keyCount >= minKeys || parent == NULL)
         {
-            // no underflow or root
+            // no underflow or node is root, nothing to fix
             return;
         }
 
@@ -654,18 +654,22 @@ void deleteInternal(Node *node, int key, Node *parent, int indexInParent)
             mergeWithRight(node, indexInParent, parent);
         }
     }
+    // node is internal
     else
     {
         // internal node
-        int i = findKeyIndex(node, key);
+        int i = 0;
+        while (i < node->keyCount && key >= node->keys[i])
+        i++;
 
-        deleteInternal(node->child[i], key, node, i);
+        deleteInternal(node->child[i], key, node, i);   //recursive call to delete key from subtree, passing current node as parent and index of child in parent
 
         // check for underflow in internal node
         int minKeys = ORDER / 2 - 1; // min keys for internal node
 
         if (node->keyCount >= minKeys || parent == NULL)
         {
+            // no underflow or node is root, nothing to fix
             return;
         }
 
